@@ -51,7 +51,7 @@ basicNN + geom_point()
 ### Numerical results
 
 ```{r}
-cor(Height~dadheight,data=davisdata)
+cor(SIMS~ARM,data=data)
 ```
 
 ### Inferential  (Build model.1)
