@@ -54,10 +54,12 @@ basicNN + geom_point()
 cor(SIMS~ARM,data=data)
 ```
 
+The correlation is 0.69. This means that arm is related to SIMS score
+
 ### Inferential  (Build model.1)
 
 ```{r}
-model.1 <- lm(Height~dadheight,data=davisdata)
+model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
 
