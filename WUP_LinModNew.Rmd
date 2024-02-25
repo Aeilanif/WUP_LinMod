@@ -81,6 +81,12 @@ Based of this code , the SIMS~ARM target point is 0.706.
 
 #### scatterplot with model fit
 
+```{r}
+plot(lmr)
+```
+
+These model fits show that my scatter plots are accurate because they all relatively have a straight line. Of course, not perfectly, but this is as accurate as I can get with the model fit. The bottom it shows lm(SIMS~ARM) so I am 100% sure that I'm showing the correct numerical variables for this model. 
+  
 ## Model 2 SIM~GRIP
 
 ### Now add in scatterplot
