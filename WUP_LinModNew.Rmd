@@ -36,6 +36,7 @@ data <- read.csv(file="https://onlinestatbook.com/case_studies_rvls/physical_str
 We predict a stimulated strength scored based from the Arm and Grip strength.
 
 Arm is a Numerical variable
+
 Grip is Numerical as well 
 
 So we use the Numerical-Num Helper file
@@ -45,8 +46,12 @@ So we use the Numerical-Num Helper file
 ### scatterplot
 
 ```{r}
-basicNN + geom_point()
+plot(SIMS~ARM,data=data)
+lmr = lm(SIMS~ARM, data = data )
+abline(lmr)
 ```
+
+According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.
 
 ### Numerical results
 
@@ -54,23 +59,27 @@ basicNN + geom_point()
 cor(SIMS~ARM,data=data)
 ```
 
-The correlation is 0.69. This means that arm is related to SIMS score
+The correlation is 0.68. This means that ARM is related to SIMS score
 
 ### Inferential  (Build model.1)
 
 ```{r}
-model.1 <- lm(SIMS~ARM,data=data)
-summary.lm(model.1)
+summary(lmr)
+newdata = c(GRIP = 94, ARM = 88 )
 ```
+
+This shows that the p-value is 0.00000000000000022. This number is far lower than 0.5
 
 #### Predict at target point
 
+```{r}
+predictSIM = predict.lm(lmr, newdata = data.frame (GRIP = 94, ARM = 88))
+print(predictSIM)
+```
+
+Based of this code , the SIMS~ARM target point is 0.706.
 
 #### scatterplot with model fit
-
-```{r}
-basicNN + geom_point(aes(col=Sex)) + geom_smooth(method=lm)
-``` 
 
 ## Model 2 SIM~GRIP
 
