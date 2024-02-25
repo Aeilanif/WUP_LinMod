@@ -46,9 +46,8 @@ So we use the Numerical-Num Helper file
 ### scatterplot
 
 ```{r}
-plot(SIMS~ARM,data=data)
-lmr = lm(SIMS~ARM, data = data )
-abline(lmr)
+basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
+basicNN + geom_point()
 ```
 
 According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.
