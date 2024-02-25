@@ -72,8 +72,8 @@ This shows that the p-value is 0.00000000000000022. This number is far lower tha
 #### Predict at target point
 
 ```{r}
-predictSIM = predict.lm(lmr, newdata = data.frame (GRIP = 94, ARM = 88))
-print(predictSIM)
+mydata <-data.frame(GRIP = 94, ARM = 88)
+predict.lm(model.1, mydata, interval = "prediction")
 ```
 
 Based of this code , the SIMS~ARM target point is 0.706.
@@ -81,10 +81,11 @@ Based of this code , the SIMS~ARM target point is 0.706.
 #### scatterplot with model fit
 
 ```{r}
-plot(lmr)
-```
+basicNN + geom_point(aes(col=SIMS)) + geom_smooth(method=lm)
+``` 
 
-These model fits show that my scatter plots are accurate because they all relatively have a straight line. Of course, not perfectly, but this is as accurate as I can get with the model fit. The bottom it shows lm(SIMS~ARM) so I am 100% sure that I'm showing the correct numerical variables for this model. 
+This model fit show that SIMS increases and the ARM increases, so this is a positive relationship. 
+
   
 ## Model 2 SIM~GRIP
 
