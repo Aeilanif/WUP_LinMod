@@ -71,21 +71,21 @@ model.1 <- lm(SIMS~ARM,data=data)
 summary.lm(model.1)
 ```
 
-This shows that the p-value is 0.00000000000000022. This number is far lower than 0.5
+This shows that the p-value is 0.0000000000000002. This number is far lower than 0.5
 
 #### Predict at target point
-
 ```{r}
-mydata <-data.frame(GRIP = 94, ARM = 88)
-predict.lm(model.1, mydata, interval = "prediction")
+SIMSpredict = predict(model.1, newdata = data.frame( GRIP = 94, ARM = 88),interval = "confidence")
+print(predictSIM)
 ```
 
-Based of this code , the SIMS~ARM target point is 0.71.
+Based of this code , the SIMS~ARM target point is 0.71
 
 #### scatterplot with model fit
-
-
-
+```{r}
+plot(ARM~SIMS, data=data)
+abline(model.1, color="blue")
+```
 
 This model fit show that SIMS increases and the ARM increases, so this is a positive relationship. 
 
@@ -95,12 +95,18 @@ This model fit show that SIMS increases and the ARM increases, so this is a posi
 
 ```{r}
 plot(SIMS~GRIP,data=data)
+abline(model.1,col="red")
 ```
+
+According to this graph is shows that we have a positive linear relation.
+
 ### Numerical results 
 
 ```{r}
 cor(SIMS~GRIP,data=data)
 ```
+
+The numerical value is 0.64.
 
 ### Inferential  (Build model.2)
 
@@ -109,6 +115,8 @@ model.2 <- lm(SIMS~GRIP,data=data)
 summary.lm(model.2)
 ```
 
+The minimum value is -2.9295. The Q1 value is -0.8708. The Q3 value is .8039. The median is -0.1219. The max is 3.3494.The p-value is 0.00000000000000022.
+
 #### predict model.2 at target point
 ```{r}
 mydata <-data.frame(GRIP = 94, ARM = 88)
@@ -116,7 +124,12 @@ predict.lm(model.2, mydata, interval = "prediction")
 ```
 
 #### now add the model fit to our plot for model.2
+```{r}
+plot(SIMS~GRIP, data=data)
+abline(model.2,col="green")
+```
 
+This graph shows us that this is a positive correlation.
 
 ## Model 3 SIM~ARM+GRIP
 
@@ -140,6 +153,7 @@ Plot shows that the GRIP and ARM are not independent, so this is not necessarily
 ```{r}
 model.3 = lm(SIMS~GRIP+ ARM, data=data)
 print(summary.lm(model.3))
+new
 ``` 
 #### predict model.3 at target point
 
@@ -156,9 +170,15 @@ The 95% confidence interval is SIMS is between -2.13 and 2.43. Since this interv
 ```{r}
 anova(model.1,model.3)
 ```
-p-value is 0.00000499, this is less tha 0.05 so we conclude that model.3 is better/worse than model.1
-### Model.2 vs Model.3
+p-value is 0.00000499, this is less than 0.05 so we conclude that model.3 is better/worse than model.1
 
+### Model.2 vs Model.3
+```{r}
+anova(model.2, model.3)
+```
+
+p-value is 0.000000001495.
 
 ## Informally compare Model.1 with model.2
 
+In conclusion, model 3 is the best because it has a smaller RSS than both model 1 and model 2. Model 1 is better than model 2., but in order for it to be better, it would need a smaller RSS. In the end, we are rejecting the null hypothesis and model 3 is the best overall. 
