@@ -49,11 +49,10 @@ So we use the Numerical-Num Helper file
 ### scatterplot
 
 ```{r}
-basicNN <- ggplot(data,aes(y=SIMS,x=ARM))
 basicNN + geom_point()
 ```
 
-According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.
+According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.I would say that there can be a 
 
 ### Numerical results
 
