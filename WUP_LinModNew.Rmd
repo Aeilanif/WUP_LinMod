@@ -1,12 +1,14 @@
 ---
 title: "linear model from Web"
-author: "Aeilani Felix "
+author: 'Aeilani Felix '
 date: "Spring 2024"
 output:
-   html_document:
-         toc: true
-         toc_depth: 5
-        
+  pdf_document:
+    toc: true
+    toc_depth: '5'
+  html_document:
+    toc: true
+    toc_depth: 5
 ---
 
 ```{r setup, include=FALSE}
@@ -49,10 +51,10 @@ So we use the Numerical-Num Helper file
 ### scatterplot
 
 ```{r}
-basicNN + geom_point()
+plot(SIMS~ARM,data=data)
 ```
 
-According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.I would say that there can be a 
+According to the scatter plot , it appears to be that this is a strong positive linear correlation between the two numerical variables.
 
 ### Numerical results
 
@@ -65,8 +67,8 @@ The correlation is 0.68. This means that ARM is related to SIMS score
 ### Inferential  (Build model.1)
 
 ```{r}
-summary(lmr)
-newdata = c(GRIP = 94, ARM = 88 )
+model.1 <- lm(SIMS~ARM,data=data)
+summary.lm(model.1)
 ```
 
 This shows that the p-value is 0.00000000000000022. This number is far lower than 0.5
@@ -78,13 +80,14 @@ mydata <-data.frame(GRIP = 94, ARM = 88)
 predict.lm(model.1, mydata, interval = "prediction")
 ```
 
-Based of this code , the SIMS~ARM target point is 0.706.
+Based of this code , the SIMS~ARM target point is 0.71.
 
 #### scatterplot with model fit
 
 ```{r}
-basicNN + geom_point(aes(col=SIMS)) + geom_smooth(method=lm)
+basicNN + geom_point(aes(col=GRIP)) + geom_smooth(ARM=lm)
 ``` 
+
 
 This model fit show that SIMS increases and the ARM increases, so this is a positive relationship. 
 
@@ -93,7 +96,9 @@ This model fit show that SIMS increases and the ARM increases, so this is a posi
 
 ### Now add in scatterplot
 
-
+```{r}
+plot(SIMS~GRIP,data=data)
+```
 ### Numerical results 
 
 
@@ -111,6 +116,12 @@ This model fit show that SIMS increases and the ARM increases, so this is a posi
 ### Numerical results (cor)
 
 `
+```{r}
+m = data.frame(data['GRIP'], data['ARM'], data['SIMS'])
+cor(m)
+```
+
+The table shows that SIMS correlates with GRIP in a positive manner (0.64) and SIMS correlates with ARM also in a positive manner (0.69). This says that these variable are useful in predictions SIMS.
   
 ### Inferential  (Build 2-dimentional model.3)
 
