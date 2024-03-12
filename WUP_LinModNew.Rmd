@@ -84,14 +84,11 @@ Based of this code , the SIMS~ARM target point is 0.71.
 
 #### scatterplot with model fit
 
-```{r}
-basicNN + geom_point(aes(col=GRIP)) + geom_smooth(ARM=lm)
-``` 
+
 
 
 This model fit show that SIMS increases and the ARM increases, so this is a positive relationship. 
 
-  
 ## Model 2 SIM~GRIP
 
 ### Now add in scatterplot
@@ -123,7 +120,14 @@ cor(m)
 
 The table shows that SIMS correlates with GRIP in a positive manner (0.64) and SIMS correlates with ARM also in a positive manner (0.69). This says that these variable are useful in predictions SIMS.
   
+```{r}
+plot(data$GRIP, data$ARM)
+```
+
+Plot shows that the GRIP and ARM are not independent, so this is not necessarily a good model.
+
 ### Inferential  (Build 2-dimentional model.3)
+
 
 #### predict model.3 at target point
   
