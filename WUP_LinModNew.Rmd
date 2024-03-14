@@ -76,7 +76,7 @@ This shows that the p-value is 0.0000000000000002. This number is far lower than
 #### Predict at target point
 ```{r}
 SIMSpredict = predict(model.1, newdata = data.frame( GRIP = 94, ARM = 88),interval = "confidence")
-print(predictSIM)
+print(SIMSpredict)
 ```
 
 Based of this code , the SIMS~ARM target point is 0.71
